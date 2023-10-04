@@ -1,0 +1,59 @@
+<div>
+
+    <mat-form-field appearance="outline" class="example-full-width"
+        *ngIf="inputType != 'date' && inputType != 'time'">
+        <mat-label>{{label}}</mat-label>
+        <input matInput [placeholder]="placeholder" type="{{inputType}}" [formControl]="form_control"
+            [pattern]="pattern" [minlength]="minLength" [maxlength]="maxLength">
+            
+
+        <span matSuffix *ngIf="form_control.hasError('required') && form_control.touched" matTooltip="{{errors}}"
+            [matTooltipDisabled]="!form_control.invalid">
+            <mat-icon color="warn">info</mat-icon>
+        </span>
+
+        <span matSuffix *ngIf="form_control.hasError('pattern') && form_control.touched"
+            [matTooltip]="'Please provide valid' +' ' + inputType " [matTooltipDisabled]="!form_control.invalid">
+            <mat-icon color="warn">info</mat-icon>
+        </span>
+
+        <span matSuffix *ngIf="form_control.hasError('minlength') && form_control.touched"
+            [matTooltip]="'Minimum Length should be above' +' ' + min " [matTooltipDisabled]="!form_control.invalid">
+            <mat-icon color="warn">info</mat-icon>
+        </span>
+
+        <span matSuffix *ngIf="form_control.hasError('maxlength') && form_control.touched"
+            [matTooltip]="'Maximum Length should be' +' ' + max " [matTooltipDisabled]="!form_control.invalid">
+            <mat-icon color="warn">info</mat-icon>
+        </span>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [floatLabel]=" 'always'" *ngIf="inputType == 'date'">
+        <mat-label>Choose Date...</mat-label>
+        <input [formControl]="form_control" matInput [matDatepicker]="picker" [textMask]="mask" #myInput>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <span matSuffix *ngIf="form_control.hasError('required') && form_control.touched" matTooltip="{{errors}}"
+            [matTooltipDisabled]="!form_control.invalid">
+            <mat-icon color="warn">info</mat-icon>
+        </span>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" [floatLabel]=" 'always'" *ngIf="inputType == 'time'">
+        <mat-label>Choose time...</mat-label>
+        <input matInput [formControl]="form_control" [ngxTimepicker]="pickertime1" [placeholder]="placeholder"
+            appTimeMask [format]="24">
+        <mat-icon matSuffix (click)="pickertime1.open()">
+            access_time
+        </mat-icon>
+        <ngx-material-timepicker color="#adff2f" #pickertime1>
+        </ngx-material-timepicker>
+        <span matSuffix *ngIf="form_control.hasError('required') && form_control.touched" matTooltip="{{errors}}"
+            [matTooltipDisabled]="!form_control.invalid">
+            <mat-icon class="time_icon" color="warn">info</mat-icon>
+        </span>
+    </mat-form-field>
+
+
+</div>
