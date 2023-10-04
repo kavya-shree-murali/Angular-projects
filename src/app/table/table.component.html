@@ -1,0 +1,15 @@
+<h1 style="text-align: center;">All In One Table</h1>
+
+<app-custom-table [dataSource]="dataSource" [displayedColumns]="displayedColumns" (onPaginating)="pagination($event)"
+    [limit]="limit" [pageOptions]="[10,15,20,25]" [needPagination]="true" [total]="total" [buttonList]="list" (OnClicking)="click($event)"
+    (OnChecking)="check($event)" (sorting)="sort($event)">
+</app-custom-table>
+
+<ngx-loading
+[show]="loading"
+[config]="{ backdropBorderRadius: '3px' }"
+[template]="'customLoadingTemplate'"
+><p>Loading...</p></ngx-loading>
+
+
+<!-- <p *ngFor="let disply of displayedColumns" matColumnDef="{{disply}}"></p> -->

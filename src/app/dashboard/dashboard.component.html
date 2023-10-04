@@ -1,0 +1,20 @@
+<h1>Signals & Examples</h1>
+<br>
+<mat-form-field floatLabel="always">
+    <mat-label>Quantity</mat-label>
+    <mat-select placeholder="Choose Quantity" (selectionChange)="optionSelected($event)">
+        <mat-option *ngFor="let q of quantity()" [value]="q">
+            {{ q }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<h1>TotalPrice : {{counter()}}</h1>
+<br>
+<div>
+    <button mat-raised-button (click)="createPromise()">Promise</button>
+    <button mat-raised-button (click)="createObservable()" style="margin-left: 10px;">Observable</button>
+    <button mat-raised-button (click)="unsubscribe()" style="margin-left: 10px;">Unsubscribe both Promise &
+        Observable</button>
+</div>
+

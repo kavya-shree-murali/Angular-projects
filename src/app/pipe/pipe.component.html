@@ -1,0 +1,31 @@
+<!-- <h1>Custom Pipe</h1>
+<p>{{ 10 | power : 2 : 20}}</p> -->
+
+
+
+
+<h2>Socket</h2>
+
+<div class="wrapper">
+    <div class="chat-box" [class.hidden]="isOpen === true">
+        <div class="header">
+            <h1>What's on your mind?</h1>
+            <div class="close" (click)="closeChat()"></div>
+        </div>
+        <div class="message-box">
+            <li *ngFor="let message of messages; let i = index"><strong>{{message}}</strong></li>
+        </div>
+        <section>
+            <textarea [(ngModel)]="message" placeholder="say hi!" (keyup.enter)="sendMessage()"></textarea>
+            <button (click)="sendMessage()" mat-raised-button> Send
+            </button>
+            <button (click)="sendMessage()" mat-raised-button> Image
+            </button>
+            <!-- <button >
+              send </button> -->
+            <!-- <i class="fa fa-paper-plane" (click)="sendMessage()" aria-hidden="true"></i>
+            <i class='fa fa-send red-color'></i> -->
+
+        </section>
+    </div>
+</div>
