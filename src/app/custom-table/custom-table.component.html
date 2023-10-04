@@ -1,0 +1,59 @@
+
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>
+
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="column === 'images'">
+          <img [src]="element?.images[0]" alt="Image" width="60px" height="50px">
+        </ng-container>
+
+        <ng-container *ngIf="column === 'check'">
+          <mat-checkbox color="primary" class="example-margin" [value]='element[column]' [disabled]="disabled"
+            (change)='onSelectChange($event, element)'></mat-checkbox>
+        </ng-container>
+
+
+        <ng-container *ngIf="column === 'status'">
+          <mat-label class="label" [matTooltip]="tooltip"
+            [ngClass]="{label1: element?.category == 'smartphones', label2: element?.category == 'skincare', label3: element?.category == 'fragrances', label: element?.category == 'laptops' }">
+            <span class="status-dot"></span>
+            {{element?.category}}</mat-label>
+        </ng-container>
+
+        <ng-container *ngIf="column === 'action'">
+          <button [matMenuTriggerFor]="menu" mat-icon-button
+            aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <ng-container *ngFor="let btn of buttonList">
+              <button mat-menu-item (click)="Button(btn?.name)">{{btn?.name}}</button>
+            </ng-container>
+          </mat-menu>
+        </ng-container>
+
+        <ng-container *ngIf="column !== 'images' && column !== 'check' && column !=='status' && column !== 'action' ">{{
+          element[column]}}</ng-container>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <ng-container *ngIf="dataSource.filteredData.length === 0 || dataSource.data.length === 0  ">
+    <p class="text-center bg-white mb-0 pb-24"> <b>No Data Found...</b> </p>
+  </ng-container>
+
+  <div class="" *ngIf="(dataSource.filteredData.length != 0 || dataSource.data.length != 0 )&&needPagination">
+    <mat-paginator #paginator [pageSizeOptions]="pageOptions" [length]="total" [pageSize]="limit"
+      (page)="paginateData($event)"></mat-paginator>
+  </div>
+
+</div>
