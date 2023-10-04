@@ -1,0 +1,36 @@
+<mat-card style="align-content: center;">
+    <h1 style="color: blue">ANGULAR CUSTOM COMPONENTS</h1>
+
+    <form action="" [formGroup]="range">
+
+      <h2>Email</h2>
+
+      <app-customized [inputType]="'email'" [required]="true" [label]="'Customization for Email'"
+        [errors]="'please provide the email'" [placeholder]="'Search Something...'"
+        [form_control]="range.controls['inputValue']" [maxLength]="20" [pattern]="emailPattern"></app-customized>
+
+      <h2>Mobile Number</h2>
+
+      <app-customized [inputType]="'number'" [required]="true" [label]="'Customization for Phone no'"
+        [errors]="'please provide the phone number'" [placeholder]="'Search Something...'"
+        [form_control]="range.controls['mobile']" [pattern]="mobilePattern"></app-customized>
+
+      <h2>Text</h2>
+
+      <app-customized [inputType]="'text'" [required]="true" [label]="'Customization for text'"
+        [errors]="'please provide the text'" [placeholder]="'Search Something...'"
+        [form_control]="range.controls['Textdate']" [minLength]="10" [pattern]="textPattern"></app-customized>
+
+      <h2>Date</h2>
+
+      <app-customized [inputType]="'date'" [form_control]="range.controls['start']" [mask]="{mask : validDatePattern}"
+        [errors]="'please provide the date'" [required]="true" [placeholder]="'dd/mm/yyyy'"></app-customized>
+
+      <h2>Time</h2>
+
+      <app-customized [inputType]="'time'" [required]="true" [form_control]="range.controls['time']"
+        [errors]="'please provide the time'" [placeholder]="'HH:MM'"></app-customized>
+
+    </form>
+
+  </mat-card>
